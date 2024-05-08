@@ -1,4 +1,4 @@
-package com.java.csncl.nutritracker;
+package com.java.csncl.nutritracker.Controller;
 
 import com.baeldung.openapi.api.UserprofileApiDelegate;
 import com.baeldung.openapi.model.UserProfile;

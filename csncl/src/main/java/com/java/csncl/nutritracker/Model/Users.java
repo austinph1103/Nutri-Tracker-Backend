@@ -1,9 +1,8 @@
-package com.java.csncl.nutritracker;
+package com.java.csncl.nutritracker.Model;
 
 import java.util.Date;
 
 public class Users {
-
     private long userID;
     private String fullName;
     private Date dob;
@@ -15,6 +14,4 @@ public class Users {
     public Users (long userID) {
 
     }
-
-
 }

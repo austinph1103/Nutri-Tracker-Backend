@@ -1,13 +1,15 @@
-package com.java.csncl.nutritracker;
+package com.java.csncl.nutritracker.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import java.util.Objects;
+
+import org.springframework.web.bind.annotation.RequestMapping;
 @Data
 @AllArgsConstructor
+@RequestMapping("/meals")
 public class Meals {
-
     private Long mealID;
     private String mealType;
     private String ingredients;

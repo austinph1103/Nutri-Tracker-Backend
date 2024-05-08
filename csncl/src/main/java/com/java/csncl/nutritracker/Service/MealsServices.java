@@ -1,7 +1,9 @@
-package com.java.csncl.nutritracker;
+package com.java.csncl.nutritracker.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.java.csncl.nutritracker.Model.Meals;
 
 public class MealsServices {
     private List<Meals> mealsList = new ArrayList<>(){
