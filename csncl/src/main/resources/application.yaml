@@ -1,0 +1,7 @@
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true
+    path: /api-docs/swagger
