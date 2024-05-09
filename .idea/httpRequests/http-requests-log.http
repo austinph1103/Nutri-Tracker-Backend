@@ -1,0 +1,45 @@
+POST http://localhost:8080/user
+Content-Type: application/json
+{:
+  "name": "13243",
+  "userId": 13423,
+}:
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-05-09T125344.400.html
+
+###
+
+POST http://localhost:8080/user
+Content-Type: application/json
+{:
+  "name": "13243",
+  "userId": 13423
+}:
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-05-09T125040.400.html
+
+###
+
+POST http://localhost:8080/user
+Content-Type: application/json
+{:
+  "name": "13243"
+  "userId": 13423
+}:
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-05-09T124742.400.html
+
+###
+

@@ -7,7 +7,39 @@ info:
 servers:
   - url: http://localhost:8080/
 paths:
-  /userprofile/{userId}:
+  /user:
+    post:
+      summary: Create an User Profile
+      operationId: createUser
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+      responses:
+        '201':
+          description: Null response
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /user/{userId}:
     parameters:
       - name: userId
         in: path
@@ -53,33 +85,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-    post:
-      summary: Create an User Profile
-      operationId: createUser
-      tags:
-        - users
-      responses:
-        '201':
-          description: Null response
-        '400':
-          description: Invalid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        '409':
-          description: User already exists
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-
 #  /meals/{mealID}:
 #    get:
 #      summary: Info for a specific meal
@@ -145,10 +150,6 @@ components:
           type: string
           enum: [A, B, O, AB]
           description: Blood type of user
-#    Pets:
-#      type: array
-#      items:
-#        $ref: "#/components/schemas/Pet"
     Error:
       type: object
       required:
