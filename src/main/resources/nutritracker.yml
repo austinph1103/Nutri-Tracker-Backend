@@ -7,7 +7,7 @@ info:
 servers:
   - url: http://localhost:8080/
 paths:
-  /userprofile/{userId}:
+  /userProfile/{userId}:
     get:
       summary: Get an user profile with according userId
       operationId: getUserById
@@ -46,7 +46,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /userprofile/create:
+  /userProfile/create:
     post:
       summary: Create an User Profile
       operationId: createUser

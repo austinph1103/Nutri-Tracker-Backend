@@ -9,9 +9,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @OpenAPIDefinition
 public class Application {
-    public static void main(String[] args) {
-//        String classpath = System.getProperty("java.class.path");
-//        System.out.println("Classpath: " + classpath);
-        SpringApplication.run(Application.class, args);
-    }
+    public static void main(String[] args) {SpringApplication.run(Application.class, args);}
 }
