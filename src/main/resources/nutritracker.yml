@@ -1,0 +1,156 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: NutriTracker
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080/
+paths:
+  /userprofile/{userId}:
+    get:
+      summary: Get an user profile with according userId
+      operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          description: The id of user to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int32
+      tags:
+        - users
+
+      responses:
+        '200':
+          description: User retrieved successfully
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /userprofile/create:
+    post:
+      summary: Create an User Profile
+      operationId: createUser
+      tags:
+        - users
+      responses:
+        '201':
+          description: Null response
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+#  /meals/{mealID}:
+#    get:
+#      summary: Info for a specific meal
+#      operationId: showMealById
+#      tags:
+#        - meals
+#      parameters:
+#        - name: mealID
+#          in: path
+#          required: true
+#          description: The id of the meal to retrieve
+#          schema:
+#            type: string
+#      responses:
+#        '200':
+#          description: Expected response to a valid request
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/Meals"
+#        default:
+#          description: unexpected error
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    UserProfile:
+      type: object
+      required:
+        - userId
+        - name
+      properties:
+        userId:
+          type: integer
+          description: ID of the user
+        name:
+          type: string
+          description: Name of the user
+        dob:
+          type: string
+          format: date
+          description: Date of birth of the user
+        sex:
+          type: string
+          enum: [ male, female, other ]
+          description: Gender of the user
+        emails:
+          type: array
+          items:
+            type: string
+          description: List of email addresses associated with the user
+        height:
+          type: number
+          format: double
+          description: Height of user in cm
+        weight:
+          type: number
+          format: double
+          description: Weight of user in cm
+        bloodType:
+          type: string
+          enum: [A, B, O, AB]
+          description: Blood type of user
+#    Pets:
+#      type: array
+#      items:
+#        $ref: "#/components/schemas/Pet"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
