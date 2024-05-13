@@ -55,7 +55,6 @@
             <artifactId>guava</artifactId>
             <version>33.1.0-jre</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -63,10 +62,12 @@
             <scope>provided</scope>
         </dependency>
 
+
     </dependencies>
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -81,11 +82,13 @@
                                 ${project.basedir}/src/main/resources/nutritracker.yml
                             </inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>com.baeldung.openapi.api</apiPackage>
-                            <modelPackage>com.baeldung.openapi.model</modelPackage>
+                            <apiPackage>com.csncl.nutritracker</apiPackage>
+                            <modelPackage>com.csncl.nutritracker</modelPackage>
                             <supportingFilesToGenerate>
                                 ApiUtil.java
                             </supportingFilesToGenerate>
+<!--                            <validateSpec>false</validateSpec>-->
+                            <skipValidateSpec>true</skipValidateSpec>
                             <configOptions>
                                 <delegatePattern>true</delegatePattern>
                             </configOptions>

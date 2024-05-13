@@ -1,8 +1,8 @@
-package com.java.csncl.nutritracker;
+package com.csncl.nutritracker;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+
 import java.util.Objects;
 @Data
 @AllArgsConstructor

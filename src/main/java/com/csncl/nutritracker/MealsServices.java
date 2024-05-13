@@ -1,4 +1,4 @@
-package com.java.csncl.nutritracker;
+package com.csncl.nutritracker;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,28 +7,21 @@ info:
 servers:
   - url: http://localhost:8080/
 paths:
-  /userprofile/{userId}:
-    parameters:
-      - name: userId
-        in: path
-        description: The id of user to retrieve
-        required: true
-        schema:
-          type: integer
-          format: int32
+  /userProfile/{userId}:
     get:
       summary: Get an user profile with according userId
       operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          description: The id of user to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int32
       tags:
         - users
-#      parameters:
-#        - name: userId
-#          in: path
-#          description: The id of user to retrieve
-#          required: true
-#          schema:
-#            type: integer
-#            format: int32
+
       responses:
         '200':
           description: User retrieved successfully
@@ -53,6 +46,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /userProfile/create:
     post:
       summary: Create an User Profile
       operationId: createUser
