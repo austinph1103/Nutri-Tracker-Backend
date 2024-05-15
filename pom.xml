@@ -98,7 +98,6 @@
                             <supportingFilesToGenerate>
                                 ApiUtil.java
                             </supportingFilesToGenerate>
-<!--                            <validateSpec>false</validateSpec>-->
                             <skipValidateSpec>true</skipValidateSpec>
                             <configOptions>
                                 <delegatePattern>true</delegatePattern>

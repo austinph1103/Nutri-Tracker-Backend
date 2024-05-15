@@ -7,12 +7,12 @@ info:
 servers:
   - url: http://localhost:8080/
 paths:
-  /userProfile/{userId}:
+  /user-profile/{user-id}:
     get:
       summary: Get an user profile with according userId
       operationId: getUserById
       parameters:
-        - name: userId
+        - name: user-id
           in: path
           description: The id of user to retrieve
           required: true
@@ -21,7 +21,6 @@ paths:
             format: int32
       tags:
         - users
-
       responses:
         '200':
           description: User retrieved successfully
@@ -46,7 +45,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /userProfile/create:
+  /user-profile/create:
     post:
       summary: Create an User Profile
       operationId: createUser
