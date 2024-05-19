@@ -45,6 +45,87 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+#  /user-profile/delete:
+    delete:
+      summary: Delete a user profile with the specified userId
+      operationId: deleteUserById
+      parameters:
+        - name: user-id
+          in: path
+          description: The ID of the user to delete
+          required: true
+          schema:
+            type: integer
+            format: int32
+      tags:
+        - users
+      responses:
+        '204':
+          description: User deleted successfully
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    put:
+      summary: Update a user profile with the specified userId
+      operationId: updateUserById
+      parameters:
+        - name: user-id
+          in: path
+          description: The ID of the user to update
+          required: true
+          schema:
+            type: integer
+            format: int32
+      tags:
+        - users
+      requestBody:
+        description: User profile data to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserProfile"
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /user-profile/create:
     post:
       summary: Create an User Profile

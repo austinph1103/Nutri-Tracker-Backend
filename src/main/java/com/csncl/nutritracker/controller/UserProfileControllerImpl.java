@@ -21,5 +21,15 @@ public class UserProfileControllerImpl implements UserProfileApiDelegate {
     public ResponseEntity<UserProfile> getUserById(Integer userId) {
         return ResponseEntity.of(Optional.of(new UserProfile(2, "ANBOB")));
     }
+
+    @Override
+    public ResponseEntity<UserProfile> updateUserById(Integer userId, UserProfile userProfile) {
+        return UserProfileApiDelegate.super.updateUserById(userId, userProfile);
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteUserById(Integer userId) {
+        return UserProfileApiDelegate.super.deleteUserById(userId);
+    }
 }
 
