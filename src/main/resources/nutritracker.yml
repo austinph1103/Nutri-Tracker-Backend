@@ -7,6 +7,42 @@ info:
 servers:
   - url: http://localhost:8080/
 paths:
+  /user-profile:
+    get:
+      summary: Get all user profiles for debugging purposes.
+      operationId: getUsers
+      tags:
+        - users
+      responses:
+        '200':
+          description: User retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserProfile"
+              examples:
+                generic_sample:
+                  $ref: "#/components/examples/GenericUserProfiles"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                generic_sample:
+                  $ref: "#/components/examples/Response400"
+        default:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                generic_sample:
+                  $ref: "#/components/examples/Response500Default"
   /user-profile/{user-id}:
     get:
       summary: Get an user profile with according userId
@@ -217,12 +253,8 @@ components:
           description: Weight of user in cm
         bloodType:
           type: string
-          enum: [A, B, O, AB]
+          enum: [ A, B, O, AB ]
           description: Blood type of user
-#    Pets:
-#      type: array
-#      items:
-#        $ref: "#/components/schemas/Pet"
     Error:
       type: object
       required:
@@ -234,3 +266,25 @@ components:
           format: int32
         message:
           type: string
+  examples:
+    GenericUserProfiles:
+      summary: UserProfile(s) example
+      value:
+        - userId: abc123
+          name: John Doe
+          dob: 01-01-1970
+          sex: male
+          emails: john.doe@email.com
+          height: 160
+          weight: 85
+          bloodType: O
+    Response400:
+      summary: 400 Response example
+      value:
+        code: 400
+        message: "This is a bad request."
+    Response500Default:
+      summary: 500/Default Response example
+      value:
+        code: 500
+        message: "There is something wrong with our API. Please try again later."
