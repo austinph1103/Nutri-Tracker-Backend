@@ -172,7 +172,7 @@ components:
           description: Weight of user in cm
         bloodType:
           type: string
-          enum: [A, B, O, AB]
+          enum: [ A, B, O, AB ]
           description: Blood type of user
     Error:
       type: object
