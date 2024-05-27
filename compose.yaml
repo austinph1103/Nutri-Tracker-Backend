@@ -1,0 +1,20 @@
+services:
+  server:
+    image: dreamingbutter/nut-be
+    container_name: nutri-tracker-backend
+    build:
+      context: .
+    restart: always
+    environment:
+      - spring.datasource.url=jdbc:postgresql://database-1.c34a6s6c6jvd.us-east-1.rds.amazonaws.com:5432/postgres
+      - spring.datasource.username=postgres
+      - spring.datasource.password=Baomap123
+      - spring.datasource.driver-class-name=org.postgresql.Driver
+      - spring.datasource.dbcp2.test-while-idle=true
+      - spring.datasource.dbcp2.validation-query=SELECT 1
+    ports:
+      - 8080:8080
+#    volumes:
+#      - myapp:/home/node/app
+#volumes:
+#  myapp:

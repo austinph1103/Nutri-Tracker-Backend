@@ -1,12 +1,13 @@
 package dbConnect;
 
 import java.sql.Connection;
-public class TestingConnection {
 
+public class TestingConnection {
     public static void main(String[] args) {
         Connection connection = null;
         try {
-            connection = DBConfig.getConnection();
+            DBConfig dbConfig = new DBConfig();
+            connection = dbConfig.getConnection();
             if (connection != null) {
                 System.out.println("Connected to the PostgreSQL server successfully.");
             } else {

@@ -7,5 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 @SpringBootApplication
 public class Application {
-    public static void main(String[] args) {SpringApplication.run(Application.class, args);}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 }
