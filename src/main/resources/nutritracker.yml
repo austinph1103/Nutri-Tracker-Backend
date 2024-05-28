@@ -45,12 +45,12 @@ paths:
                   $ref: "#/components/examples/Response500Default"
   /user-profile/{user-id}:
     get:
-      summary: Get an user profile with according userId
+      summary: Get a user profile with the specified userId
       operationId: getUserById
       parameters:
         - name: user-id
           in: path
-          description: The id of user to retrieve
+          description: The ID of the user to retrieve
           required: true
           schema:
             type: integer
@@ -76,7 +76,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
         default:
-          description: unexpected error
+          description: Unexpected error
           content:
             application/json:
               schema:
@@ -164,13 +164,20 @@ paths:
                 $ref: "#/components/schemas/Error"
   /user-profile/create:
     post:
-      summary: Create an User Profile
+      summary: Create a User Profile
       operationId: createUser
       tags:
         - users
+      requestBody:
+        description: User profile data to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserProfile"
       responses:
         '201':
-          description: Null response
+          description: User created successfully
         '400':
           description: Invalid request
           content:
@@ -184,39 +191,40 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
         default:
-          description: unexpected error
+          description: Unexpected error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
 
+#user-id is auto-incremented so no need to be included
 components:
   schemas:
     UserProfile:
       type: object
       required:
-        - userId
         - name
+        - dob
+        - sex
+        - emails
+        - height
+        - weight
       properties:
-        userId:
-          type: integer
-          description: ID of the user
         name:
           type: string
           description: Name of the user
         dob:
           type: string
-          format: date
+          format: string
           description: Date of birth of the user
         sex:
           type: string
-          enum: [ male, female, other ]
+          format: string
           description: Gender of the user
         emails:
-          type: array
-          items:
-            type: string
-          description: List of email addresses associated with the user
+          type: string
+          format: string
+          description: An email address associated with the user
         height:
           type: number
           format: double
@@ -224,7 +232,7 @@ components:
         weight:
           type: number
           format: double
-          description: Weight of user in cm
+          description: Weight of user in kg
         bloodType:
           type: string
           enum: [ A, B, O, AB ]
@@ -244,11 +252,12 @@ components:
     GenericUserProfiles:
       summary: UserProfile(s) example
       value:
-        - userId: abc123
+        - userId: 123
           name: John Doe
-          dob: 01-01-1970
+          dob: 1970-01-01
           sex: male
-          emails: john.doe@email.com
+          emails:
+            - john.doe@email.com
           height: 160
           weight: 85
           bloodType: O

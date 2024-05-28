@@ -7,9 +7,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DBConfig {
 
+    private static final Logger logger = Logger.getLogger(DBConfig.class.getName());
     private static Connection dbConnection;
 
     public static Connection getConnection() {
@@ -29,9 +32,10 @@ public class DBConfig {
             return dbConnection;
         } catch (IOException ex) {
             ex.printStackTrace();
-            // Handle the exception (e.g., log the error, throw a specific exception, etc.)
         } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Failed to initialize database connection.", e);
             e.printStackTrace();
+            throw new ExceptionInInitializerError(e);
         } finally {
             if (input != null) {
                 try {
