@@ -197,6 +197,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+#  /meals/create:
+#    post:
+#      summary: Create a meal
+
 #user-id is auto-incremented so no need to be included
 components:
   schemas:
@@ -237,6 +241,7 @@ components:
           type: string
           enum: [ A, B, O, AB ]
           description: Blood type of user
+
     Error:
       type: object
       required:
@@ -248,6 +253,7 @@ components:
           format: int32
         message:
           type: string
+
   examples:
     GenericUserProfiles:
       summary: UserProfile(s) example
