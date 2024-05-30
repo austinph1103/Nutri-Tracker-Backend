@@ -51,7 +51,7 @@ public class UserProfileControllerImpl implements UserProfileApiDelegate {
             while (rs.next()) {
                 String fullname = rs.getString("fullname");
                 String dob = rs.getString("dob");
-                String sex = (String) rs.getObject("sex");
+                String sex = rs.getString("sex");
                 String email = rs.getString("emails");
                 Double weight = rs.getDouble("weight");
                 Double height = rs.getDouble("height");
