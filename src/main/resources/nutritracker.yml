@@ -7,6 +7,7 @@ info:
 servers:
   - url: http://localhost:8080/
 paths:
+  #  USER ENDPOINTS
   /user-profile:
     get:
       summary: Get all user profiles for debugging purposes.
@@ -197,9 +198,261 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-#  /meals/create:
-#    post:
-#      summary: Create a meal
+  # INGREDIENTS
+  /ingredients/add/{meal-id}:
+    post:
+      summary: Add some ingredients to a specific meal id
+      operationId: addIngredients
+      parameters:
+        - name: meal-id
+          in: path
+          description: The meal id in which the ingredients is added to
+          required: true
+          schema:
+            type: integer
+            format: int32
+      tags:
+        - ingredients
+      requestBody:
+        description: ingredients to be added to a specific meal id
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Ingredients"
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  # DATE
+  /date/update/{date-id}:
+    put:
+      summary: Update a specific logged date by dateId
+      operationId: updateDateById
+      parameters:
+        - name: date-id
+          in: path
+          description: The logged date ID to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int32
+      tags:
+        - date
+      requestBody:
+        description: Logged Date for update by ID
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Date"
+      responses:
+        '200':
+          description: Logged date ID retrieved successfully
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Date"
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /date/{date-log}:
+    get:
+      summary: Get a specific logged date
+      operationId: getDate
+      parameters:
+        - name: date-log
+          in: path
+          description: The logged date to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int32
+      tags:
+        - date
+      responses:
+        '200':
+          description: Logged date retrieved successfully
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Date"
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  #  MEALS
+  /meals/{meal-id}:
+    get:
+      summary: Get a specific with the specified mealId
+      operationId: getMealById
+      parameters:
+        - name: meal-id
+          in: path
+          description: The ID of the meal to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int32
+      tags:
+        - meals
+      responses:
+        '200':
+          description: Meal retrieved successfully
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Meals"
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /meals/update/{meal-type}:
+    put:
+      summary: Update a mealType
+      operationId: updateMealType
+      parameters:
+        - name: meal-type
+          in: path
+          description: The type of meal to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int32
+      tags:
+        - meals
+      requestBody:
+        description: The meal type to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Meals"
+      responses:
+        '200':
+          description: MealType retrieved successfully
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Meals"
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /meals/add/{date-id}:
+    post:
+      summary: Add a meal to a specified date-id
+      operationId: addMeal
+      parameters:
+        - name: date-id
+          in: path
+          description: The date-id in which the meal is added to
+          required: true
+          schema:
+            type: integer
+            format: int32
+      tags:
+        - meals
+      requestBody:
+        description: A specific meal to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Meals"
+      responses:
+        '201':
+          description: Meal added successfully
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: Meal already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
 
 #user-id is auto-incremented so no need to be included
 components:
@@ -241,6 +494,38 @@ components:
           type: string
           enum: [ A, B, O, AB ]
           description: Blood type of user
+    Meals:
+      type: object
+      required:
+        - mealType
+      properties:
+        mealType:
+          type: string
+          format: string
+          description: Type of meal added (breakfast, lunch or dinner)
+    Ingredients:
+      type: object
+      required:
+        - name
+        - quantity
+      properties:
+        name:
+          type: string
+          format: string
+          description: Name of the ingredients
+        quantity:
+          type: number
+          format: double
+          description: Quantity of the ingredients
+    Date:
+      type: object
+      required:
+        - dateLog
+      properties:
+        dateLog:
+          type: string
+          format: date
+          description: Date logged by user
 
     Error:
       type: object
